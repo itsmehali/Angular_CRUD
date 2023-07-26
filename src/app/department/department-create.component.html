@@ -1,0 +1,37 @@
+<div class="create-form">
+  <form (submit)="onCreateDepartment()">
+    <label for="departmentName">Department Name:</label>
+    <input
+      type="text"
+      id="departmentName"
+      name="departmentName"
+      [(ngModel)]="departmentName"
+      required
+    />
+
+    <h3>Users:</h3>
+    <div *ngFor="let user of users; let i = index">
+      <label for="userName{{ i }}">User Name:</label>
+      <input
+        type="text"
+        id="userName{{ i }}"
+        name="userName{{ i }}"
+        [(ngModel)]="user.name"
+        required
+      />
+
+      <label for="userBirthday{{ i }}">User Birthday:</label>
+      <input
+        type="date"
+        id="userBirthday{{ i }}"
+        name="userBirthday{{ i }}"
+        [(ngModel)]="user.birthday"
+        required
+      />
+    </div>
+
+    <button type="button" (click)="onAddUserInput()">Add New User</button>
+
+    <button type="submit">Create Department</button>
+  </form>
+</div>
