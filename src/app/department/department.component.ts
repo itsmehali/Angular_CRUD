@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Department, DepartmentService } from '../services/department.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-department',
@@ -13,6 +14,7 @@ export class DepartmentComponent {
 
   constructor(
     private departmentService: DepartmentService,
+    private userService: UserService,
     private router: Router
   ) {}
 
@@ -47,6 +49,21 @@ export class DepartmentComponent {
       },
       error: (error: Error) => {
         alert('Error while deleting');
+      },
+    });
+  }
+
+  onDeleteUser(id: number | undefined) {
+    this.userService.deleteUser(id!).subscribe({
+      next: (response) => {
+        alert(response.message);
+
+        this.getDepartments();
+      },
+      error: (error: Error) => {
+        console.log(error);
+
+        alert('Erro while deleting');
       },
     });
   }

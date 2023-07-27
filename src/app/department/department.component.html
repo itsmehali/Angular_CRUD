@@ -14,11 +14,14 @@
           <ul>
             <li *ngFor="let user of department.users">
               {{ user.name }} ({{ user.birthday | date : "yyyy-MM-dd" }})
+              <button (click)="onDeleteUser(user.id)">Delete user</button>
             </li>
           </ul>
         </td>
         <td>
-          <button (click)="onDeleteDepartment(department.id)">Delete</button>
+          <button (click)="onDeleteDepartment(department.id)">
+            Delete department
+          </button>
         </td>
       </tr>
     </tbody>
